@@ -1,32 +1,27 @@
-import React from "react"
+import { useState } from "react";
 
-class NewItem extends React.Component {
-    state = {
-        term: ''
-    };
+export default function NewItem(props) {
+  const [term, setTerm] = useState("");
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        if(this.state.term === '') return;
-        this.props.onFormSubmit(this.state.term);
-        this.setState({ term: '' });
-    }
-    render() {
-        return(
-            <div className='newItem' >
-            <form onSubmit={this.handleSubmit}>
-                <input
-                    className='myInput'
-                    type='text'
-                    placeholder='Enter Item'
-                    value={this.state.term}
-                    onChange={(e) => this.setState({term: e.target.value})}
-                />
-                <button className='myButton'>Add</button>
-            </form>
-            </div>
-        );
-    }
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (term === "") return;
+    props.onFormSubmit(term);
+    setTerm("");
+  }
+
+  return (
+    <div className="newItem">
+      <form onSubmit={handleSubmit}>
+        <input
+          className="myInput"
+          type="text"
+          placeholder="Enter Item"
+          value={term}
+          onChange={(e) => setTerm(e.target.value)}
+        />
+        <button className="myButton">Add</button>
+      </form>
+    </div>
+  );
 }
-
-export default NewItem

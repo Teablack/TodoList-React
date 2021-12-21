@@ -37,13 +37,21 @@ export default function App() {
   function hideCompleted() {
     setHide(!hide);
   }
+  function handleOnDelete(id) {
+    setTodoList(todoList.filter((item) => item.id !== id));
+  }
 
   return (
     <>
       <div className="todo-list">
         <Filter handleChange={hideCompleted} />
         {filtered.map((item) => (
-          <TodoItem key={item.id} item={item} handleChange={handleChange} />
+          <TodoItem
+            key={item.id}
+            item={item}
+            handleChange={handleChange}
+            handleOnDelete={handleOnDelete}
+          />
         ))}
         {todoList.length === 0 && <p>Nothing to do...</p>}
       </div>

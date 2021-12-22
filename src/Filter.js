@@ -1,13 +1,9 @@
-export default function Filter(props) {
+export default function Filter({ label, handleChange }) {
   return (
     <>
       <label>
-        <input
-          type="checkbox"
-          checked={props.hide}
-          onChange={props.handleChange}
-        />
-        hide completed
+        <input type="checkbox" onChange={handleChange} />
+        {label}
       </label>
     </>
   );

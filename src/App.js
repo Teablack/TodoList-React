@@ -40,11 +40,15 @@ export default function App() {
   function handleOnDelete(id) {
     setTodoList(todoList.filter((item) => item.id !== id));
   }
+  function handleReverse() {
+    setTodoList(todoList.map(todoList.pop, [...todoList]));
+  }
 
   return (
     <>
       <div className="todo-list">
-        <Filter handleChange={hideCompleted} />
+        <Filter label="hide completed" handleChange={hideCompleted} />
+        <Filter label="reverse list" handleChange={handleReverse} />
         {filtered.map((item) => (
           <TodoItem
             key={item.id}
